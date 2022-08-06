@@ -46,40 +46,37 @@ This Yandex disk REST API client (SDK) will help you simplify the integration of
 package main
 
 import (
+	"context"
 	"fmt"
+	"github.com/EmirShimshir/yandexDiskApiClient"
 	"log"
 	"time"
-
-	"github.com/EmirShimshir/inMemoryCache"
 )
 
+const oAuth = "YOUR OAUTH HERE"
+
 func main() {
-	var cache inMemoryCache.Cache
-	cache = inMemoryCache.New()
-
-	err := cache.Set("userId", 42, 5 * time.Second)
-	if err != nil { // err == nil
+	client, err := yandexDiskApiClient.NewClient(oAuth, 10*time.Second)
+	if err != nil {
 		log.Fatal(err)
 	}
 
-	userId, err := cache.Get("userId")
-	if err != nil { // err == nil
+	ctx := context.Background()
+
+	disk, err := client.GetDiskInfo(ctx)
+	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println(userId) // Output: 42
 
-	time.Sleep(6 * time.Second)
-
-	userId, err = cache.Get("userId")
-	if err != nil { // err != nil
-		log.Fatal(err) // <--
-	}
+	fmt.Println(disk.Info())
 }
 
 ```
 
 ```
-42
-2022/07/27 14:43:08 no value for the key userId
-exit status 1
+[Sat Aug  6 13:03:50 2022] GET https://cloud-api.yandex.net/v1/disk
+UserName: Emir2701
+UsedSpace: 1760710963
+UsedSpace: 10737418240
+
 ```

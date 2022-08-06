@@ -48,9 +48,10 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/EmirShimshir/yandexDiskApiClient"
 	"log"
 	"time"
+
+	"github.com/EmirShimshir/yandexDiskApiClient"
 )
 
 const oAuth = "YOUR OAUTH HERE"
@@ -60,6 +61,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+	
 
 	ctx := context.Background()
 

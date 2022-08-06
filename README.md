@@ -7,7 +7,7 @@ go get -u github.com/EmirShimshir/yandexDiskApiClient
 ```
 
 ## Description
-This Yandex disk REST API client (SDK) will help you simplify the integration of your application with Yandex Disk.
+This Yandex disk REST API client (SDK) will help you simplify the integration of your application with Yandex Disk: https://yandex.ru/dev/disk/rest/
 
 ```NewClient(oAuth string, timeout time.Duration) (*Client, error)``` - constructor for new client
 
